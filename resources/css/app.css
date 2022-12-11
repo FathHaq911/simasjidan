@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=fallback');
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+
+/* Additional styles */
+@import 'additional-styles/utility-patterns.css';
+@import 'additional-styles/range-slider.css';
+@import 'additional-styles/toggle-switch.css';
+@import 'additional-styles/flatpickr.css';
+@import 'additional-styles/theme.css';
+
+@import 'tailwindcss/utilities';
+
+/* See Alpine.js: https://github.com/alpinejs/alpine#x-cloak */
+[x-cloak=""] {
+    display: none;
+}
+
+@media screen and (max-width: theme('screens.lg')) {
+    [x-cloak="lg"] { display: none; }
+}
+
+/* Jam Digital */
+.jam_digital {
+    @apply bg-white rounded-xl text-center mb-40 py-5 mx-28
+}
+
+.card {
+    @apply w-52 py-7 rounded-2xl drop-shadow-xl m-4 bg-white hover:py-[4em] hover:w-[14em] bg-cover hover:text-white 
+}
+
+.card-header {
+    @apply text-2xl font-semibold
+}
+
+
+
+/* Jam Analog */
+
+.jam_analog {
+    @apply relative w-[35em] h-[35em] rounded-full p-5 backdrop-blur-lg drop-shadow-md;
+    
+}
+
+.jam_analog:before {
+    
+}
+
+.xxx {
+    @apply h-full w-full relative;
+}
+
+.jarum {
+    @apply absolute w-1/2 top-1/2 rotate-90;
+    background: white;
+    transform-origin: 100%;
+    transition: all 0.05s cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.jarum_detik {
+    height: 2px;
+    border-radius: 1px;
+    background: #F0C952;
+}
+
+.jarum_menit {
+    height: 4px;
+    border-radius: 4px;
+}
+
+.jarum_jam {
+    height: 8px;
+    border-radius: 4px;
+    width: 35%;
+    left: 15%;
+}
+
+.xxx p {
+    @apply text-white absolute font-poppins font-medium text-4xl text-center bg-slate-700/25 rounded-full w-14 h-14 p-1 py-[6px]
+}
+
+/* jam 1 */
+.xxx p:nth-child(5) {
+    @apply top-0 right-[2.8em]
+}
+
+/* jam 2 */
+.xxx p:nth-child(6) {
+    @apply top-32 -right-2 
+}
+
+/* jam 3 */
+.xxx p:nth-child(7) {
+    @apply top-[5.4em] -right-12 text-5xl font-semibold w-[70px] h-[70px] p-1 py-[6px]
+}
+
+/* jam 4 */
+.xxx p:nth-child(8) {
+    @apply bottom-32 -right-2 
+}
+
+/* jam 5 */
+.xxx p:nth-child(9) {
+    @apply bottom-0 right-[2.8em]
+}
+
+/* jam 6 */
+.xxx p:nth-child(10) {
+    @apply -bottom-12 left-[5.6em] text-5xl font-semibold
+}
+
+/* jam 7 */
+.xxx p:nth-child(11) {
+    @apply bottom-0 left-[2.8em]
+}
+
+/* jam 8 */
+.xxx p:nth-child(12) {
+    @apply bottom-32 -left-2 
+}
+
+/* jam 9 */
+.xxx p:nth-child(13) {
+    @apply top-[5.4em] -left-12 text-5xl font-semibold w-[70px] h-[70px] p-1 py-[6px]
+}
+
+/* jam 10 */
+.xxx p:nth-child(14) {
+    @apply top-32 -left-2 
+}
+
+/* jam 11 */
+.xxx p:nth-child(15) {
+    @apply top-0 left-[2.8em]
+}
+
+/* jam 12 */
+.xxx p:nth-child(16) {
+    @apply -top-12 right-[5.4em] text-5xl font-semibold w-[70px] h-[70px] p-1 py-[6px]
+}
