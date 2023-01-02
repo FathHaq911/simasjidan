@@ -35,7 +35,7 @@
     <!-- Footer -->
     <div class="pt-5 mt-6 border-t border-slate-200">
         <div class="text-sm">
-            {{ __('Don\'t you have an account?') }} <a class="font-medium text-indigo-500 hover:text-indigo-600" href="{{ route('register') }}">{{ __('Sign Up') }}</a>
+            {{ __('Don\'t you have an account?') }} <a class="font-medium text-sky-500 hover:text-sky-600" href="{{ route('register') }}">{{ __('Sign Up') }}</a>
         </div>
         <!-- Warning -->
         <div class="mt-5">

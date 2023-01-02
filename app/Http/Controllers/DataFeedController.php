@@ -8,12 +8,9 @@
     class DataFeedController extends ApiController
     {
 
-        /**
-         * @param Request $request
-         * @return mixed
-         */
         public function getDataFeed(Request $request)
         {
+            // dd($request->all());
             $df = new DataFeed();
 
             return (object)[

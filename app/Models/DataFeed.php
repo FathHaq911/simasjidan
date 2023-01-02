@@ -9,23 +9,10 @@
     {
         use HasFactory;
 
-        /**
-         * @var array
-         */
         protected $guarded = ['id'];
 
-        /**
-         * @var string
-         */
         protected $table = 'datafeeds';
 
-        /**
-         * Retrieves specific data types from the db
-         *
-         * @param int $dataType
-         * @param string $field
-         * @return mixed
-         */
         public function getDataFeed(int $dataType, string $field = 'label', ?int $limit = null)
         {
             $query = $this->where('data_type', $dataType)
@@ -43,13 +30,8 @@
             return $query;
         }
 
-        /**
-         * Counts a set of data based on the datatype
-         *
-         * @param int $dataType
-         * @param int|null $limit
-         * @return mixed
-         */
+        
+
         public function sumDataSet(int $dataType, ?int $dataset = null)
         {
             $query = $this->where('data_type', $dataType)

@@ -3,6 +3,7 @@ import {
   Chart, LineController, LineElement, Filler, PointElement, LinearScale, TimeScale, Tooltip,
 } from 'chart.js';
 import 'chartjs-adapter-moment';
+import { split, stubString } from 'lodash';
 
 // Import utilities
 import { tailwindConfig, formatValue, hexToRGB } from '../utils';
@@ -130,7 +131,13 @@ const dashboardCard05 = () => {
         chart.update(0);
         if (!chartValue) return;
         const diff = ((value - prev) / prev) * 100;
-        chartValue.innerHTML = value;
+        const valueStr = value.toString()
+        const ribu = valueStr.split('')
+        ribu.splice(valueStr.length - 3, 0, '.')
+        const valueRibu = ribu.join('') 
+        // console.log(valueRibu);
+        
+        chartValue.innerHTML = valueRibu;
         if (!chartDeviation) return;
         if (diff < 0) {
           chartDeviation.style.backgroundColor = tailwindConfig().theme.colors.amber[500];

@@ -1,4 +1,4 @@
-<div class="relative bg-indigo-200 p-4 sm:p-6 rounded-sm overflow-hidden mb-8">
+<div class="relative {{ (int)date('H') < 4 ? 'bg-slate-500 text-white' : ((int)date('H') < 9 ? 'bg-sky-200' : ((int)date('H') < 16 ? 'bg-sky-500 text-white': ((int)date('H') < 18 ? 'bg-orange-200': 'bg-slate-500 text-white') ) ) ; }} p-4 sm:p-6 rounded-sm overflow-hidden mb-8">
 
     <!-- Background illustration -->
     <div class="absolute right-0 top-0 -mt-4 mr-16 pointer-events-none hidden xl:block" aria-hidden="true">
@@ -44,7 +44,8 @@
 
     <!-- Content -->
     <div class="relative">
-        <h1 class="text-2xl md:text-3xl text-slate-800 font-bold mb-1">Good afternoon, {{ Auth::user()->name }} 👋</h1>
+        <h1 class="text-2xl md:text-3xl{{ (int)date('H') < 4 || (int)date('H') > 18 ? 'text-white' : 'text-slate-800' ; }}  font-bold mb-1">Selamat 
+            {{ (int)date('H') < 4 ? 'Malam' : ((int)date('H') < 9 ? 'Pagi' : ((int)date('H') < 16 ? 'Siang': ((int)date('H') < 18 ? 'Sore': 'Malam') ) ) ; }} {{ Auth::user()->name }} 👋</h1>
         <p>Here is what's happening with your projects today:</p>
     </div>
 

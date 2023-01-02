@@ -2,85 +2,110 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCashRequest;
-use App\Http\Requests\UpdateCashRequest;
 use App\Models\Cash;
+use App\Models\Date;
+use Illuminate\Http\Request;
 
 class CashController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
-    }
+        // get nama hari
+        $hari = Date::getHari();
+        // $bulan = Date::getBulan();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+        //get Uang Cash
+        $cash = Cash::all();
+        
+        $t_debit = 0;
+        $t_kredit = 0;
+
+        foreach($cash as $item){
+            $t_debit    +=  $item->debit;
+            $t_kredit   +=  $item->kredit;
+        }
+        
+        $t_kas = $t_debit - $t_kredit;
+
+
+        //render view 
+        return view('pages.cash.cash', compact('cash', 'hari', 't_debit', 't_kredit', 't_kas'));
+    }
+    
     public function create()
     {
-        //
+        // return view('pages.cash.add-cash');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreCashRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreCashRequest $request)
+    public function store(Request $request)
     {
-        //
+        
+        // Validasi Debit Kredit String ke Integer
+
+        $debit = 0;
+        if (strlen($request->debit) > 8) {
+            $debit = (int)$request->debit * 1000000;
+        } elseif (strlen($request->debit) > 4) {
+            $debit = (int)$request->debit * 1000;
+        } 
+
+        $kredit = 0;
+        if (strlen($request->kredit) > 8) {
+            $kredit = (int)$request->kredit * 1000000;
+        } elseif (strlen($request->kredit) > 4) {
+            $kredit = (int)$request->kredit * 1000;
+        } 
+
+
+        // create cash
+        Cash::create([
+            'name'    => $request->name,
+            'debit'   => $debit,
+            'kredit'  => $kredit,
+            'note'    => $request->note,
+        ]);
+
+        //redirect to index
+        return redirect()->route('cash.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Cash  $cash
-     * @return \Illuminate\Http\Response
-     */
     public function show(Cash $cash)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Cash  $cash
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Cash $cash)
     {
-        //
+        return view('product.edit', compact('product'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateCashRequest  $request
-     * @param  \App\Models\Cash  $cash
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateCashRequest $request, Cash $cash)
+    public function update(Request $request, Cash $cash)
     {
-        //
+        $this->validate($request, [
+            'name'      => 'required|min:5',
+            'debit'     => 'required|min:3',
+            'kredit'    => 'required|min:3',
+            'note'      => 'required|min:5',
+        ]);
+
+        //update Cash
+        $cash->update([
+            'name'     => $request->name,
+            'debit'    => $request->debit,
+            'kredit'    => $request->kredit,
+            'note'    => $request->note,
+        ]);
+
+        //redirect to index
+        // return redirect()->route('pages.cash.cash');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Cash  $cash
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Cash $cash)
     {
-        //
+        $cash->delete();
+
+        return redirect()->route('/cash');
     }
+
 }

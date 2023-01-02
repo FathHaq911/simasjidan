@@ -13,10 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
+        // Schema::create('categories_cash', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('name');
+        //     $table->timestamps();
+        // });
+
         Schema::create('cashes', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable();
+            $table->integer('debit')->nullable()->default(0);
+            $table->integer('kredit')->nullable()->default(0);
+            $table->string('note')->nullable();
             $table->timestamps();
         });
+
+        
     }
 
     /**

@@ -269,7 +269,7 @@ class DashboardTableSeeder extends Seeder
                 DataFeed::create([
                     'data_type' => $d['type'],
                     'label' => (isset($d['labels'][$i]) ? $d['labels'][$i] : null),
-                    'data' => $d['data'][$i],
+                    'data' => $d['data'][$i]*1000,
                     'dataset_name' => (isset($d['dataset_name']) ? $d['dataset_name'] : null),
                 ]);
             }

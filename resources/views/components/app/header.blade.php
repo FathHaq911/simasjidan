@@ -25,8 +25,6 @@
             <!-- Header: Right side -->
             <div class="flex items-center space-x-3">
 
-                <!-- Search Button with Modal -->
-                <x-modal-search />
 
                 <!-- Notifications button -->
                 <x-dropdown-notifications align="right" />
@@ -43,14 +41,6 @@
 
                 <hr class="w-px h-6 bg-slate-200" />
                 <hr class="w-px h-6 bg-slate-200" />
-<
-                <x-date-select/>
-                <x-datepicker/>
-                <x-dropdown-filter/>
-                <x-dropdown-help align="right" />
-                <x-dropdown-notifications/>
-                <x-dropdown-profile/>
-                <x-modal-search />
             </div>
 
         </div>
